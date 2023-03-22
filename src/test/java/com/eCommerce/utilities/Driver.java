@@ -29,10 +29,10 @@ public class Driver {
                     WebDriverManager.chromedriver().setup();
                     ChromeOptions options = new ChromeOptions();
                     options
-                            .addArguments("--remote-allow-origins=*");
-                            //().addArguments("--incognito")
-                            //.addArguments("--start-maximized")
-                            //.addArguments("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36");
+                            .addArguments("--remote-allow-origins=*")
+                            .addArguments("--disable-blink-features=AutomationControlled")
+                            .addArguments("--incognito")
+                            .addArguments("--start-maximized");
                     driver = new ChromeDriver(options);
                     break;
                 case "chrome-headless":
@@ -65,7 +65,7 @@ public class Driver {
                 case "safari":
                     if (!System.getProperty("os.name").toLowerCase().contains("mac"))
                         throw new WebDriverException("Your OS doesn't support Safari");
-                    SafariOptions safariOptions= new SafariOptions();
+                    SafariOptions safariOptions = new SafariOptions();
                     WebDriverManager.getInstance(SafariDriver.class).setup();
                     driver = new SafariDriver();
                     break;

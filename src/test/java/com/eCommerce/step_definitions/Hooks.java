@@ -12,7 +12,7 @@ public class Hooks {
 
     @Before
     public void setUp() {
-        System.out.println("Driver has been started");
+        System.out.println("WebDriver has been started");
     }
 
     @After

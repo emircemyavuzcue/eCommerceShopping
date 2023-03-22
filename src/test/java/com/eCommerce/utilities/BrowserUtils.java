@@ -16,6 +16,7 @@ public class BrowserUtils {
 
     /**
      * Switches to new window by the exact title. Returns to original window if target title not found
+     *
      * @param targetTitle
      */
     public static void switchToWindow(String targetTitle) {
@@ -34,9 +35,10 @@ public class BrowserUtils {
      *
      * @param element on which to hover
      */
-    public static void hover(WebElement element) {
+    public static void hover(By element) {
+        waitForClickablility(element, 10);
         Actions actions = new Actions(Driver.get());
-        actions.moveToElement(element).perform();
+        actions.moveToElement(Driver.get().findElement(element)).perform();
     }
 
     /**
@@ -272,6 +274,7 @@ public class BrowserUtils {
 
     /**
      * Highlighs an element by changing its background and border color
+     *
      * @param element
      */
     public static void highlight(WebElement element) {
@@ -367,8 +370,9 @@ public class BrowserUtils {
     }
 
     /**
-     *  checks that an element is present on the DOM of a page. This does not
-     *    * necessarily mean that the element is visible.
+     * checks that an element is present on the DOM of a page. This does not
+     * * necessarily mean that the element is visible.
+     *
      * @param by
      * @param time
      */
@@ -376,19 +380,39 @@ public class BrowserUtils {
         new WebDriverWait(Driver.get(), Duration.ofSeconds(time)).until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
-public static void sendKeys(By by,String word){
-        waitForVisibility(by,10);
+    public static void sendKeys(By by, String word) {
+        //waitForClickablility(by, 10);
         Driver.get().findElement(by).sendKeys(word);
-}
-public static void sendKeyboardCommand(By by,Keys key){
-        waitForVisibility(by,10);
+    }
+
+    public static void sendKeyboardCommand(By by, Keys key) {
+        waitForVisibility(by, 10);
         Driver.get().findElement(by).sendKeys(key);
-}
+    }
 
-public static void click(By by){
-        waitForClickablility(by,10);
+    public static void click(By by) {
+        waitForClickablility(by, 10);
         Driver.get().findElement(by).click();
-}
+    }
 
+    public static String getTextOfAnElement(By by) {
+        waitForClickablility(by, 10);
+        String text = Driver.get().findElement(by).getText();
+        return text;
+    }
+
+    public static int randomNumberGenerator(int min, int max) {
+        int randomNumber = (int) (Math.random() * (max - min + 1) + min);
+        return randomNumber;
+    }
+
+    public static boolean isElementVisible(By element) {
+        try {
+            Driver.get().findElement(element).isDisplayed();
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
 
 }
