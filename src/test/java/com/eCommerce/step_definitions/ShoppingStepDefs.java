@@ -9,6 +9,7 @@ import com.eCommerce.utilities.ConfigurationReader;
 import com.eCommerce.utilities.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import org.junit.Assert;
 
 public class ShoppingStepDefs {
@@ -48,12 +49,11 @@ public class ShoppingStepDefs {
     public void theUserAddsFillsTheInformationBoxesAndClicksContinueToPayment() {
         BrowserUtils.waitFor(5);
         boolean isShippingVisible = BrowserUtils.isElementVisible(InformationPage.shippingText);
-        System.out.println(isShippingVisible);
         InformationPageModules.informationFiller();
         BrowserUtils.clickWithJS(InformationPage.continueToShippingButton);
         BrowserUtils.waitFor(5);
         if (isShippingVisible) {
-            BrowserUtils.waitForClickablility(ShippingPage.continueToPaymentButton,10);
+            BrowserUtils.waitForClickablility(ShippingPage.continueToPaymentButton, 10);
             BrowserUtils.clickWithJS(ShippingPage.continueToPaymentButton);
         }
     }
@@ -62,8 +62,13 @@ public class ShoppingStepDefs {
     public void theUserFillsPaymentInformationAndClicksPayNowButton() {
         BrowserUtils.waitFor(5);
         PaymentPageModules.creditCardFiller();
-        BrowserUtils.click(PaymentPage.payNowButton);
+        BrowserUtils.clickWithJS(PaymentPage.payNowButton);
     }
 
-
+    @Then("The user makes sure the payment is successfull")
+    public void theUserMakesSureThePaymentIsSuccessfull() {
+        String expected="Your order is confirmed";
+        String actual=BrowserUtils.getTextOfAnElement(ConfirmationPage.confirmationText);
+        Assert.assertEquals(expected,actual);
+    }
 }

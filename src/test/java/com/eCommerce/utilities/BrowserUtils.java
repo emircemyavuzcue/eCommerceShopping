@@ -238,7 +238,7 @@ public class BrowserUtils {
      * @param by
      */
     public static void clickWithJS(By by) {
-        ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].scrollIntoView(true);", Driver.get().findElement(by));
+        waitForClickablility(by,10);
         ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].click();", Driver.get().findElement(by));
     }
 
@@ -381,7 +381,7 @@ public class BrowserUtils {
     }
 
     public static void sendKeys(By by, String word) {
-        //waitForClickablility(by, 10);
+        waitForClickablility(by, 10);
         Driver.get().findElement(by).sendKeys(word);
     }
 
@@ -413,6 +413,14 @@ public class BrowserUtils {
         } catch (NoSuchElementException e) {
             return false;
         }
+    }
+    public static void sendKeysWithoutWait(By by, String word) {
+        Driver.get().findElement(by).sendKeys(word);
+    }
+    public static void sendKeysWithJS(By by,String text) {
+        JavascriptExecutor jse = ((JavascriptExecutor)Driver.get());
+        WebElement locator = Driver.get().findElement(by);
+        jse.executeScript("arguments[0].value='123124123';", locator);
     }
 
 }

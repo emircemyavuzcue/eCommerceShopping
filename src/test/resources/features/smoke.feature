@@ -8,3 +8,4 @@ Feature: includes scenarios for the smoke test suite
     And The user adds a random Respiratory Health product to the cart and checks out
     And The user adds fills the information boxes and clicks continue to payment
     And The user fills payment information and clicks Pay Now button
+    Then The user makes sure the payment is successfull
