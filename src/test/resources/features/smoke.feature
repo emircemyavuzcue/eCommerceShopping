@@ -10,7 +10,7 @@ Feature: includes scenarios for the smoke test suite
     And The user adds fills the information boxes and clicks continue to payment
     And The user fills payment information and clicks Pay Now button
     Then The user makes sure the payment is successful
-  @purchaseFlowForDev
+  @smokeTestSuite @purchaseFlowForDev
   Scenario: Purchasing a product on Cue Health Dev environment
     Given The user clicks enter using your password icon and logs in with correct credentials
     And The user picks a random product on main page
