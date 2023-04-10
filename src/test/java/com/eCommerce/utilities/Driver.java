@@ -32,7 +32,9 @@ public class Driver {
                             .addArguments("--remote-allow-origins=*")
                             .addArguments("--disable-blink-features=AutomationControlled")
                             .addArguments("--incognito")
-                            .addArguments("--start-maximized");
+                            .addArguments("--start-maximized")
+                            .addArguments("--disable-dev-shm-usage")
+                            .addArguments("--no-sandbox");
                     driver = new ChromeDriver(options);
                     break;
                 case "chrome-headless":
