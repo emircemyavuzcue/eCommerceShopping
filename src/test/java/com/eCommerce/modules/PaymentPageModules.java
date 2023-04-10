@@ -30,6 +30,7 @@ public class PaymentPageModules extends BrowserUtils {
         Driver.get().switchTo().frame(frameElementSecurityCode);
         sendKeys(PaymentPage.securityCode, "123");
         Driver.get().switchTo().defaultContent();
+        clickWithJS(PaymentPage.checkBox);
     }
 
 }

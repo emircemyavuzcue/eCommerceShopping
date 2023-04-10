@@ -10,5 +10,6 @@ public class PaymentPage {
     public static final By expirationYear = By.xpath("//input[@data-current-field='expiry']");
     public static final By securityCode = By.xpath("//input[@placeholder='Security code']");
     public static final By payNowButton = By.xpath("(//span[contains(text(), 'Pay now')])[1]");
+    public static final By checkBox = By.xpath("//input[@class='input-checkbox']");
 
 }

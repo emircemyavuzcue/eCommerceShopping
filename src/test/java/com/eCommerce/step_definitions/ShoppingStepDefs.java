@@ -5,27 +5,12 @@ import com.eCommerce.modules.InformationPageModules;
 import com.eCommerce.modules.PaymentPageModules;
 import com.eCommerce.pages.*;
 import com.eCommerce.utilities.BrowserUtils;
-import com.eCommerce.utilities.ConfigurationReader;
 import com.eCommerce.utilities.Driver;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
 
 public class ShoppingStepDefs {
-    @Given("The user clicks login icon and logs in with correct credentials")
-    public void the_user_clicks_login_icon_and_logs_in_with_correct_credentials() {
-        Driver.get().get(ConfigurationReader.get("url"));
-        BrowserUtils.click(BasePage.loginIcon);
-        BrowserUtils.sendKeys(LoginPage.emailBox, ConfigurationReader.get("emailForDev"));
-        BrowserUtils.sendKeys(LoginPage.passwordBox, ConfigurationReader.get("passwordForDev"));
-        BrowserUtils.waitFor(5);
-        BrowserUtils.click(LoginPage.loginButton);
-        String expected = "Log out";
-        String actual = BrowserUtils.getTextOfAnElement(LoginPage.logOutButton);
-        Assert.assertEquals(expected, actual);
-
-    }
 
     @And("The user goes to main page")
     public void theUserGoesToMainPage() {
@@ -51,24 +36,28 @@ public class ShoppingStepDefs {
         boolean isShippingVisible = BrowserUtils.isElementVisible(InformationPage.shippingText);
         InformationPageModules.informationFiller();
         BrowserUtils.clickWithJS(InformationPage.continueToShippingButton);
-        BrowserUtils.waitFor(5);
+        BrowserUtils.waitFor(10);
         if (isShippingVisible) {
-            BrowserUtils.waitForClickablility(ShippingPage.continueToPaymentButton, 10);
             BrowserUtils.clickWithJS(ShippingPage.continueToPaymentButton);
         }
     }
 
     @And("The user fills payment information and clicks Pay Now button")
     public void theUserFillsPaymentInformationAndClicksPayNowButton() {
-        BrowserUtils.waitFor(5);
+        BrowserUtils.waitFor(8);
         PaymentPageModules.creditCardFiller();
         BrowserUtils.clickWithJS(PaymentPage.payNowButton);
     }
 
-    @Then("The user makes sure the payment is successfull")
-    public void theUserMakesSureThePaymentIsSuccessfull() {
-        String expected="Your order is confirmed";
-        String actual=BrowserUtils.getTextOfAnElement(ConfirmationPage.confirmationText);
-        Assert.assertEquals(expected,actual);
+    @Then("The user makes sure the payment is successful")
+    public void theUserMakesSureThePaymentIsSuccessful() {
+        String expected = "Your order is confirmed";
+        String actual = BrowserUtils.getTextOfAnElement(ConfirmationPage.confirmationText);
+        Assert.assertEquals(expected, actual);
+    }
+
+    @And("The user picks a random product on main page")
+    public void theUserPicksARandomProductOnMainPage() {
+        BasePageModules.randomProductSelectorWithJsClick(BasePage.randomProducts);
     }
 }
