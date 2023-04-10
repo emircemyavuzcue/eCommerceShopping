@@ -51,6 +51,7 @@ public class ShoppingStepDefs {
 
     @Then("The user makes sure the payment is successful")
     public void theUserMakesSureThePaymentIsSuccessful() {
+        BrowserUtils.waitFor(3);
         String expected = "Your order is confirmed";
         String actual = BrowserUtils.getTextOfAnElement(ConfirmationPage.confirmationText);
         Assert.assertEquals(expected, actual);
