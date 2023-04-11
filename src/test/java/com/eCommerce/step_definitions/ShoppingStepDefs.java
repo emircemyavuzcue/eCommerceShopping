@@ -44,7 +44,7 @@ public class ShoppingStepDefs {
 
     @And("The user fills payment information and clicks Pay Now button")
     public void theUserFillsPaymentInformationAndClicksPayNowButton() {
-        BrowserUtils.waitFor(8);
+        BrowserUtils.waitFor(10);
         PaymentPageModules.creditCardFiller();
         BrowserUtils.clickWithJS(PaymentPage.payNowButton);
     }
