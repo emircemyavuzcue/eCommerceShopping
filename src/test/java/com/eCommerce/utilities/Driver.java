@@ -34,7 +34,8 @@ public class Driver {
                             .addArguments("--incognito")
                             .addArguments("--start-maximized")
                             .addArguments("--disable-dev-shm-usage")
-                            .addArguments("--no-sandbox");
+                            .addArguments("--no-sandbox")
+                            .addArguments("--headless");
                     driver = new ChromeDriver(options);
                     break;
                 case "chrome-headless":
