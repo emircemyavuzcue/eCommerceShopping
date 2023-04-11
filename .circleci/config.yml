@@ -23,6 +23,11 @@ jobs:
       - checkout
       # Use mvn clean and package as the standard maven build phase
       - run:
+          name: Install Bundler
+          command: |
+            sudo apt update
+            sudo apt install bundler
+      - run:
           name: Build
           command: mvn clean
       # Then run your tests!
