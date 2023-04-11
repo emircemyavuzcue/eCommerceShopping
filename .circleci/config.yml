@@ -35,23 +35,13 @@ jobs:
       - run:
           name: Test
           command: mvn test -Dcucumber.filter.tags="@smokeTestSuite"
-          steps:
-      - run:
-          name: Saving artifacts
-          command: |
-            mkdir -p ~/test-results/junit/
-            find . -type f -regex ".*/target/cucumber-html-reports/.*" -exec cp {} ~/test-results/junit/ \;
-          when: always
-      - run:
-          name: Save test results
-          command: |
-            mkdir -p ~/test-results/junit/
-            find . -type f -regex ".*/target/cucumber-reports/.*xml" -exec cp {} ~/test-results/junit/ \;
-          when: always    
+          steps:   
       - store_test_results:
-          path: ~/test-results
+          path: target/cucumber-reports/
       - store_artifacts:
-          path: ~/test-results
+          path: target/cucumber-report-html/
+          destination: reports/cucumber/
+
  
 
 # Invoke jobs via workflows
