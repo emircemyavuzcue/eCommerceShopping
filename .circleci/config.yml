@@ -31,8 +31,7 @@ jobs:
           command: mvn test -Dcucumber.filter.tags="@smokeTestSuite"
       - run:
           name: Save test results
-          command: |
-            
+          command:
             bundle exec cucumber --format pretty --format json --out ~/target/cucumber-reports/Cucumber.xml
           when: always
       - store_test_results:
