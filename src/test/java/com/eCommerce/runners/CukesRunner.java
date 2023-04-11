@@ -7,10 +7,12 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        plugin = {"json:target/cucumber.json",
+        plugin = {"pretty",
+                "json:target/cucumber-reports/cucumber.json",
                 "html:target/default-html-reports",
                 "junit:target/cucumber-reports/Cucumber.xml",
-                "rerun:target/rerun.txt"},
+                },
+        //"rerun:target/rerun.txt"
         features = "src/test/resources/features",
         glue = "com/eCommerce/step_definitions",
         dryRun = false,
