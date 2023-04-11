@@ -33,10 +33,12 @@ jobs:
           name: Save test results
           command: |
             mkdir -p ~/cucumber
-            bundle exec cucumber --format junit --out ~/cucumber/cucumber.json
+            bundle exec cucumber --format pretty --format json --out ~/cucumber/tests.cucumber
           when: always
       - store_test_results:
           path: ~/cucumber
+      - store_artifacts:
+          path: ~/cucumber 
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
