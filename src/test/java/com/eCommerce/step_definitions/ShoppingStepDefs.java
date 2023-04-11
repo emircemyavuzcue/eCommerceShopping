@@ -38,6 +38,7 @@ public class ShoppingStepDefs {
         BrowserUtils.clickWithJS(InformationPage.continueToShippingButton);
         BrowserUtils.waitFor(10);
         if (isShippingVisible) {
+            BrowserUtils.waitFor(5);
             BrowserUtils.clickWithJS(ShippingPage.continueToPaymentButton);
         }
     }
