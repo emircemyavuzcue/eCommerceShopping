@@ -34,15 +34,16 @@ jobs:
       - run:
           name: Test
           command: mvn test -Dcucumber.filter.tags="@smokeTestSuite"
+          steps:
       - run:
           name: Save test results
-          command:
-            bundle exec cucumber --format pretty --format json --out ~/target/cucumber-reports/Cucumber.xml
+          command: |
+            mkdir -p ~/test-results/junit/
+            find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/test-results/junit/ \;
           when: always
       - store_test_results:
-          path: ~/cucumber
-      - store_artifacts:
-          path: ~/cucumber 
+          path: ~/test-results
+ 
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
