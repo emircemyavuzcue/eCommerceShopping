@@ -15,6 +15,7 @@ public class LoginStepDefs {
         Driver.get().get(ConfigurationReader.get("urlDev"));
         BrowserUtils.waitFor(5);
         BrowserUtils.clickWithJS(LoginPage.enterUsingPasswordButton);
+        BrowserUtils.waitFor(3);
         BrowserUtils.sendKeys(LoginPage.yourPasswordBox, "$peed0fLife");
         BrowserUtils.click(LoginPage.enterButton);
     }
