@@ -29,6 +29,14 @@ jobs:
       - run:
           name: Test
           command: mvn test -Dcucumber.filter.tags="@smokeTestSuite"
+      - run:
+          name: Save test results
+          command: |
+            mkdir -p ~/cucumber
+            bundle exec cucumber --format junit --out ~/cucumber/junit.xml
+          when: always
+      - store_test_results:
+          path: ~/cucumber
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
