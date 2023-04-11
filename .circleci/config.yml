@@ -53,7 +53,7 @@ jobs:
             find . -type f -regex ".*/target/cucumber-html-reports/*.html" -exec cp {} ~/test-results/junit/ \;
           when: always
       - store_test_results:
-          path: ~/test-results
+          path: ~/tmp/artifacts 
  
 
 # Invoke jobs via workflows
